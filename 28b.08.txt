@@ -1,0 +1,52 @@
+my sql commands 
+
+
+show databases ; 
+use test ;
+show tables ; 
+
+create database  mydb123 ; 
+
+Select * from Database ; 
+
+alter user hr account unlock; 
+
+
+DQL or DRL : 	Select * FROM tablename ;
+			
+
+		Select * from TableName; 
+
+		desc tablename ; 
+
+	SELECT FIRST_NAME||' '||LAST_NAME AS FULL_NAME FROM EMPLOYEES; 
+
+
+where clause : it is use to filter the records.
+	1. Relational Operator 
+	> , < , >= , <= , = , != or <> ;
+
+	select * from tableName where ColumnName RO value ; 
+	select first_name, salary from employees where salary > 12000 ; 
+
+	2. within in a range 
+	between operator 
+
+
+	select first_name, salary from employees where salary between 5000 and 10000 
+
+	3. specific more than one conditions
+	in operator 
+	select first_name, salary from employees where salary in ( 2500 ,17000,2500,5000,12000); 
+
+	4. like operator 
+	
+	select salary from employees where first_name like 'john'; 
+
+	5.  DateFormat : dd-mm-yy
+
+select first_name,salary from employees where first_name like '%s' ;
+
+	6. Not null 
+
+	7. Logical operator and,or,not	

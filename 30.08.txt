@@ -1,0 +1,101 @@
+create table emp2(accno int, name varchar(10), amount float) ;
+
+Table created.
+
+SQL> create table emp1(id int,name varchar(10),salary number(10,2)) ;
+
+Table created.
+
+SQL> insert into emp1 values(1,'Raj',1200);
+
+1 row created.
+
+SQL> insert into emp1 values(2,'Seeta', 1400);
+
+1 row created.
+
+SQL> insert into emp2 values(100,'Raj',500);
+
+1 row created.
+
+SQL> insert into emp2 values(101,'Reeta',1000);
+
+1 row created.
+
+SQL> select * from emp1 , emp2 ;
+
+        ID NAME           SALARY      ACCNO NAME           AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Raj              1200        100 Raj               500
+         1 Raj              1200        101 Reeta            1000
+         2 Seeta            1400        100 Raj               500
+         2 Seeta            1400        101 Reeta            1000
+
+SQL> select emp1.id, emp1.salary , emp1.name, emp2.accno,emp2.amount from emp1,emp2 ;
+
+        ID     SALARY NAME            ACCNO     AMOUNT
+---------- ---------- ---------- ---------- ----------
+         1       1200 Raj               100        500
+         1       1200 Raj               101       1000
+         2       1400 Seeta             100        500
+         2       1400 Seeta             101       1000
+
+SQL> select e1.id, e1.name,e2.accno from emp1 e1, emp2 e2 ;
+
+        ID NAME            ACCNO
+---------- ---------- ----------
+         1 Raj               100
+         1 Raj               101
+         2 Seeta             100
+         2 Seeta             101
+
+SQL> select e1.id, e1.name,e2.accno from emp1 e1, emp2 e2 where e1.name = e2.name;
+
+        ID NAME            ACCNO
+---------- ---------- ----------
+         1 Raj               100
+
+
+Inner Join
+SQL> select e1.id , e1.name , e1.salary , e2.accno , e2.name, e2.amount from emp1 e1 inner join emp2 e2 on e1.name = e2.name ;
+
+Outer Join 
+SQL> select e1.id , e1.name , e1.salary , e2.accno , e2.name, e2.amount from emp1 e1 inner join emp2 e2 on e1.name = e2.name(+) ;
+
+        ID NAME           SALARY      ACCNO NAME           AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Raj              1200        100 Raj               500
+         2 Seeta            1400
+
+
+SQL> select e1.id , e1.name , e1.salary , e2.accno , e2.name, e2.amount from emp1 e1 inner join emp2 e2 on e1.name = e2.name ; // default join is inner join 
+
+        ID NAME           SALARY      ACCNO NAME           AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Raj              1200        100 Raj               500
+
+SQL> select e1.id , e1.name , e1.salary , e2.accno , e2.name, e2.amount from emp1 e1,emp2 e2 where e1.name = e2.name(+) ;
+
+        ID NAME           SALARY      ACCNO NAME           AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Raj              1200        100 Raj               500
+         2 Seeta            1400
+
+SQL> select e1.id , e1.name , e1.salary , e2.accno , e2.name, e2.amount from emp1 e1,emp2 e2 where e1.name (+) = e2.name ;
+
+        ID NAME           SALARY      ACCNO NAME           AMOUNT
+---------- ---------- ---------- ---------- ---------- ----------
+         1 Raj              1200        100 Raj               500
+                                        101 Reeta            1000
+
+
+
+
+	Transactional control Language 
+	commit , rollback , savepoint 
+	
+	DML operation 
+	insert, delete or update 
+
+	update account set amount = amount - 500 where acco = 1 ; 
+	update account set amount = amount + 500 where acco = 3 ; 
